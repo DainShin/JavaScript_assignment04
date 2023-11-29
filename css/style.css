@@ -1,3 +1,17 @@
+* {
+    margin: 0;
+    padding: 0;
+
+}
+
+h1{
+    text-align: center;
+}
+
+.inner-wrapper > p {
+    text-align: center;
+}
+
 .results {
     width: 450px;
     height: auto;
@@ -6,3 +20,40 @@
 .menu {
     background-color: #ddd;
 }
+
+section {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    grid-gap: 20px;
+}
+
+.inner-wrapper {
+    width: 90%;
+    margin: 0 auto;
+}
+
+button {
+    padding: 10px;
+}
+
+form {
+    margin: 20px 0;
+}
+
+input {
+    width: 250px;
+    height: 20px;
+}
+
+form {
+    width: 60%;
+    margin: 0 auto;
+    padding-top: 30px;
+}
+
+form p {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+

@@ -18,8 +18,6 @@ function fetchResults(event) {
         url = baseUrl + 'search.php?s=' + word;
     } 
 
-   
-
     fetch(url)
     .then(res => res.json())
     .then(json => showResults(json));
