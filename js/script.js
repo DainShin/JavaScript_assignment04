@@ -1,23 +1,28 @@
 const baseUrl = 'https://www.themealdb.com/api/json/v1/1/';
 let url;
 
-const word = document.querySelector('#word');
-
 const form = document.querySelector('form');
-const submit = document.querySelector('.submit');
 const section = document.querySelector('section');
 
-submit.addEventListener('click', fetchResults);
+form.addEventListener('submit', fetchResults);
 
 function fetchResults(event) {
     event.preventDefault();
 
     const letter = document.getElementById('letter').value.trim(); 
-    url = baseUrl + 'search.php?f=' + letter;
+    const word = document.getElementById('word').value.trim();
 
-    fetch(url).then(res => {
-        return res.json();
-    }).then(json => showResults(json))
+    if(letter !== '' && letter !== null) {
+        url = baseUrl + 'search.php?f=' + letter;
+    } else{
+        url = baseUrl + 'search.php?s=' + word;
+    } 
+
+   
+
+    fetch(url)
+    .then(res => res.json())
+    .then(json => showResults(json));
 };
 
 function showResults(json) {
@@ -36,26 +41,39 @@ function showResults(json) {
     } else {
         for(let i=0; i<meals.length; i++) {
             const menu = document.createElement('div');
-            const name = document.createElement('h2');
+            const name = document.createElement('h3');
+            const video = document.createElement('p');
+            const country = document.createElement('span');
             const link = document.createElement('a');
             const img = document.createElement('img');
             const recipe = document.createElement('p');
+            const countrySection = document.createElement('span');
 
             const current = meals[i];
             console.log(current);
 
+            link.textContent = 'Watch the video';
             link.href = current.strYoutube;
-            link.textContent = current.strMeal;
             recipe.textContent = current.strInstructions;
+            name.textContent = current.strMeal;
+            country.textContent = current.strArea;
+            countrySection.textContent = 'Country: '
 
             if(current.strMealThumb.length!== null) {
                 img.src = current.strMealThumb;
                 img.alt = current.strMeal;
             }
 
+            img.style.width = '450px';
+            img.style.height = '350px';
+            countrySection.style.fontWeight = 'bold';
+
             menu.appendChild(name);
-            name.appendChild(link);
+            video.appendChild(link);
+            menu.appendChild(video);
             menu.appendChild(img);
+            menu.appendChild(countrySection);
+            menu.appendChild(country);
             menu.appendChild(recipe);
             section.appendChild(menu);
         }
