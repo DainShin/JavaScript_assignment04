@@ -1,5 +1,7 @@
 // Link to the tutorial/documentation page: https://www.themealdb.com/api.php
 
+// Users can search the recipe by name or the first letter of the meals through this API
+
 // URLs to for the API
 const baseUrl = 'https://www.themealdb.com/api/json/v1/1/';
 let url;
@@ -25,11 +27,11 @@ function fetchResults(event) {
     // This is to prevent the default submit event(transmitting the data)
     event.preventDefault();
 
-    // Those are the variables for input sections
+    // Those are the variables for input sections. The values will be stored in the variables
     const letter = document.getElementById('letter').value.trim(); 
     const word = document.getElementById('word').value.trim();
 
-    // Users can search for the recipe either by the first letter of the name or the full name
+    // Users can search the recipe either by the first letter of the name or the full name
     // The value of the URL will be decided according to the input value
     if(letter !== '' && letter !== null) {
         url = baseUrl + 'search.php?f=' + letter;
@@ -37,7 +39,8 @@ function fetchResults(event) {
         url = baseUrl + 'search.php?s=' + word;
     } 
 
-    // This makes the request, recieves the response and call the showResults function with the JSON data
+    // This makes the request with the url, recieves the response and calls the showResults function with the JSON data. 
+    // It processes the data asynchronously by using then() method
     fetch(url)
     .then(res => res.json())
     .then(json => showResults(json));
@@ -46,6 +49,7 @@ function fetchResults(event) {
 // This function will show the JSON data
 function showResults(json) {
     
+    // The while loop clears previously displayed content before showing new data retrieved for display on the screen
     while(section.firstChild) {
         section.removeChild(section.firstChild);
     };
@@ -86,7 +90,7 @@ function showResults(json) {
                 img.alt = current.strMeal;
             }
 
-            // Some styles for the image and text
+            // These are some styles for the image and text
             img.style.width = '450px';
             img.style.height = '350px';
             countrySection.style.fontWeight = 'bold';
