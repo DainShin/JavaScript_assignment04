@@ -1,3 +1,5 @@
+// Link to the tutorial/documentation page: https://www.themealdb.com/api.php
+
 // URLs to for the API
 const baseUrl = 'https://www.themealdb.com/api/json/v1/1/';
 let url;
@@ -57,6 +59,7 @@ function showResults(json) {
         p.textContent = 'No Result returned';
         section.appendChild(p);
     } else {
+        // Elements will be created to contain the data from API
         for(let i=0; i<meals.length; i++) {
             const menu = document.createElement('div');
             const name = document.createElement('h3');
@@ -77,6 +80,7 @@ function showResults(json) {
             country.textContent = current.strArea;
             countrySection.textContent = 'Country: '
 
+            // Images will be addedd unless the data is empty
             if(current.strMealThumb.length!== null) {
                 img.src = current.strMealThumb;
                 img.alt = current.strMeal;
@@ -87,7 +91,7 @@ function showResults(json) {
             img.style.height = '350px';
             countrySection.style.fontWeight = 'bold';
 
-            // Finally the data will be shown in the web page
+            // Finally the data will be loaded in the web page
             menu.appendChild(name);
             video.appendChild(link);
             menu.appendChild(video);
