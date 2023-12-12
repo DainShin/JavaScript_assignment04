@@ -58,7 +58,7 @@ function showResults(json) {
     let meals = json.meals;
 
     // If there is data in the meals, it will create html elements and put the data in each element
-    if(meals.length === 0) {
+    if(!meals || meals.length === 0) {
         const p = document.querySelector('p');
         p.textContent = 'No Result returned';
         section.appendChild(p);
