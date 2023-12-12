@@ -2,7 +2,7 @@
 
 // Users can search the recipe by name or the first letter of the meals through this API
 
-// URLs to for the API
+// URLs for the API
 const baseUrl = 'https://www.themealdb.com/api/json/v1/1/';
 let url;
 
